@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
     @Bean //메소드 이름이 spring 컨테이너에 저장됨
-    public MemberSerive memberSerive() {
+    public MemberSerive memberService() {
         return new MemberServiceImple(memberRepository());
     }
     @Bean
