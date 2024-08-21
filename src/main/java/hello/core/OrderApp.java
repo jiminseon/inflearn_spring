@@ -2,7 +2,7 @@ package hello.core;
 
 import hello.core.member.Grade;
 import hello.core.member.Member;
-import hello.core.member.MemberSerive;
+import hello.core.member.MemberService;
 import hello.core.order.Order;
 import hello.core.order.OrderService;
 import org.springframework.context.ApplicationContext;
@@ -16,12 +16,12 @@ public class OrderApp {
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
-        MemberSerive memberSerive = applicationContext.getBean("memberSerive", MemberSerive.class);
+        MemberService memberService = applicationContext.getBean("memberSerive", MemberService.class);
         OrderService orderService = applicationContext.getBean("orderService", OrderService.class);
 
         Long memberId = 1L;
         Member member = new Member(memberId, ",memberA", Grade.VIP);
-        memberSerive.join(member);
+        memberService.join(member);
 
         Order order = orderService.createOrder(memberId, "itemA", 20000);
 

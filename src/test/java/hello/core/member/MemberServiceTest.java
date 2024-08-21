@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
 
-    MemberSerive memberSerive;
+    MemberService memberService;
 
     @BeforeEach
     public void berforeEach() {
         AppConfig appConfig = new AppConfig();
-        memberSerive = appConfig.memberService();
+        memberService = appConfig.memberService();
     }
 
     @Test
@@ -21,8 +21,8 @@ public class MemberServiceTest {
         Member member = new Member(1L, "memberA", Grade.VIP);
 
         //when
-        memberSerive.join(member);
-        Member findMember = memberSerive.findMember(1L);
+        memberService.join(member);
+        Member findMember = memberService.findMember(1L);
 
         //then
         Assertions.assertThat(member).isEqualTo(findMember);

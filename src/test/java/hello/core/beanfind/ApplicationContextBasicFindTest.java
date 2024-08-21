@@ -1,9 +1,8 @@
 package hello.core.beanfind;
 
 import hello.core.AppConfig;
-import hello.core.member.MemberSerive;
+import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImple;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -18,7 +17,7 @@ public class ApplicationContextBasicFindTest {
     @Test
     @DisplayName("이름, 타입으로 조회")
     void findBeanByName() {
-        MemberSerive memberService = ac.getBean("memberService", MemberSerive.class);
+        MemberService memberService = ac.getBean("memberService", MemberService.class);
         System.out.println("memberService = " + memberService);
         System.out.println("memberService.getClass() = " + memberService.getClass());
         assertThat(memberService).isInstanceOf(MemberServiceImple.class);
@@ -27,7 +26,7 @@ public class ApplicationContextBasicFindTest {
     @Test
     @DisplayName("타입으로 조회")
     void findBeanByType() {
-        MemberSerive memberService = ac.getBean(MemberSerive.class);
+        MemberService memberService = ac.getBean(MemberService.class);
         assertThat(memberService).isInstanceOf(MemberServiceImple.class);
     }
 
