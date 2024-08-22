@@ -4,7 +4,7 @@ import hello.core.discount.DiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
-import hello.core.member.MemberServiceImple;
+import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
@@ -21,7 +21,7 @@ public class AppConfig {
     @Bean //메소드 이름이 spring 컨테이너에 저장됨
     public MemberService memberService() {
         System.out.println("call AppConfig.memberService");
-        return new MemberServiceImple(memberRepository());
+        return new MemberServiceImpl(memberRepository());
     }
     @Bean
     public MemberRepository memberRepository() {

@@ -2,7 +2,7 @@ package hello.core.beanfind;
 
 import hello.core.AppConfig;
 import hello.core.member.MemberService;
-import hello.core.member.MemberServiceImple;
+import hello.core.member.MemberServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -20,21 +20,21 @@ public class ApplicationContextBasicFindTest {
         MemberService memberService = ac.getBean("memberService", MemberService.class);
         System.out.println("memberService = " + memberService);
         System.out.println("memberService.getClass() = " + memberService.getClass());
-        assertThat(memberService).isInstanceOf(MemberServiceImple.class);
+        assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
     }
 
     @Test
     @DisplayName("타입으로 조회")
     void findBeanByType() {
         MemberService memberService = ac.getBean(MemberService.class);
-        assertThat(memberService).isInstanceOf(MemberServiceImple.class);
+        assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
     }
 
     @Test
     @DisplayName("구체 타입으로 조회")
     void findBeanByName2() {
-        MemberServiceImple memberService = ac.getBean("memberService", MemberServiceImple.class);
-        assertThat(memberService).isInstanceOf(MemberServiceImple.class);
+        MemberServiceImpl memberService = ac.getBean("memberService", MemberServiceImpl.class);
+        assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
     }
 
 
@@ -43,7 +43,7 @@ public class ApplicationContextBasicFindTest {
     void findBeanByNameX() {
         //ac.getBean("xxxx", MemberService.class);
         assertThrows(NoSuchBeanDefinitionException.class,
-                () -> ac.getBean("xxxx", MemberServiceImple.class));
+                () -> ac.getBean("xxxx", MemberServiceImpl.class));
     }
 
 }
