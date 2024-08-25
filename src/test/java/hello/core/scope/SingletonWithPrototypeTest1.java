@@ -2,6 +2,7 @@ package hello.core.scope;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Provider;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.ObjectProvider;
@@ -41,10 +42,10 @@ public class SingletonWithPrototypeTest1 {
 
     static class ClientBean {
         @Autowired
-        private ObjectProvider<PrototypeBean> prototypeBeanProvider; //DL서비스(직접 필요한 의존관계를 찾는 것) ->
+        private Provider<PrototypeBean> prototypeBeanProvider; //DL서비스(직접 필요한 의존관계를 찾는 것) ->
 
         public int logic() {
-            PrototypeBean prototypeBean = prototypeBeanProvider.getObject(); // 항상 새로운 프로타입 빈이 생성
+            PrototypeBean prototypeBean = prototypeBeanProvider.get(); // 항상 새로운 프로타입 빈이 생성
             prototypeBean.addCount();
             int count = prototypeBean.getCount();
             return count;
