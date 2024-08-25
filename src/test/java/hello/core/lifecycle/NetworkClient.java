@@ -33,6 +33,7 @@ public class NetworkClient implements InitializingBean, DisposableBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        //의존관계 주입 다 끝나고 초기화 시작
         System.out.println("NetworkClient.afterPropertiesSet");
         connect();
         call("초기화 연결 메시지");
