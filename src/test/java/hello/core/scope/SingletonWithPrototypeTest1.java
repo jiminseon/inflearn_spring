@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -34,17 +35,16 @@ public class SingletonWithPrototypeTest1 {
 
         ClientBean clientBean2 = ac.getBean(ClientBean.class);
         int count2 = clientBean2.logic();
-        Assertions.assertThat(count2).isEqualTo(2);
+        Assertions.assertThat(count2).isEqualTo(1);
     }
 
 
     static class ClientBean {
-        private final PrototypeBean prototypeBean; //생성시점에 주입 -> 계속 같은 인스턴스 사용
         @Autowired
-        public ClientBean(PrototypeBean prototypeBean) {
-            this.prototypeBean = prototypeBean;
-        }
+        private ObjectProvider<PrototypeBean> prototypeBeanProvider; //DL서비스(직접 필요한 의존관계를 찾는 것) ->
+
         public int logic() {
+            PrototypeBean prototypeBean = prototypeBeanProvider.getObject(); // 항상 새로운 프로타입 빈이 생성
             prototypeBean.addCount();
             int count = prototypeBean.getCount();
             return count;
